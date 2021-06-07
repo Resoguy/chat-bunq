@@ -1,0 +1,41 @@
+@import '../../assets/styles/variables';
+
+.messagePanel {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 140px;
+    position: relative;
+}
+
+.messageCard {
+    width: 350px;
+    margin: $space-md;
+
+    .senderName {
+        color: $accent;
+    }
+
+    &.owner {
+        margin-left: auto;
+
+        .senderName {
+            color: $primary;
+        }
+    }
+
+    .timestamp {
+        text-align: right;
+        font-size: $font-xs;
+        color: rgba($secondary, 0.5);
+    }
+}
+
+.messageFormWrapper {
+    background-color: $tertiary;
+    padding: $space-md;
+    position: fixed;
+    bottom: 0;
+    left: 300px;
+    right: 0;
+    z-index: 9;
+}

@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables';
+
+.conversationLink {
+    padding: $space-md;
+    display: block;
+    text-decoration: none;
+    color: $secondary;
+    transition: $transition;
+
+    &:hover {
+        background-color: rgba($tertiary, 0.2);
+    }
+
+    &.active {
+        background-color: $tertiary;
+    }
+}

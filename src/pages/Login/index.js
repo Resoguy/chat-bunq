@@ -27,7 +27,7 @@ class Login extends Component {
         const { users } = this.props;
 
         return (
-            <div className={s.loginWrapper}>
+            <section className={s.loginWrapper}>
                 <Card className={s.loginCard}>
                     <h1>Login</h1>
                     <p>You can login with a valid username, password is arbitrary.</p>
@@ -76,7 +76,7 @@ class Login extends Component {
                         </>
                     }
                 </Card>
-            </div>
+            </section>
         );
     }
 }

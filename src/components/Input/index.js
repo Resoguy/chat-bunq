@@ -18,6 +18,9 @@ const Input = ({
         {
             type === 'textarea' ?
             <textarea
+                className={cc({[s.block]: block})}
+                id={id || name}
+                name={name}
                 onChange={onChange}
                 {...props}>
             </textarea> :

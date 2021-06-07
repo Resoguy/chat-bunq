@@ -1,2 +1,8 @@
+// AUTH
 export const SET_USERS = 'SET_USERS';
 export const SET_USER = 'SET_USER';
+
+// CHAT
+export const SET_CONVERSATIONS = 'SET_CONVERSATIONS';
+export const SET_MESSAGES = 'SET_MESSAGES';
+export const SET_MESSAGES_LOADING = 'SET_MESSAGES_LOADING';

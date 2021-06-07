@@ -1,0 +1,24 @@
+@import '../../assets/styles/variables';
+
+.homeWrapper {
+    height: calc(100vh - 56px);
+    display: flex;
+
+    .sideMenu {
+        background-color: $white;
+        overflow: auto;
+        flex-basis: 300px;
+        box-shadow: $shadow;
+    }
+
+    .mainContent {
+        flex: 1;
+    }
+}
+
+.welcomeWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

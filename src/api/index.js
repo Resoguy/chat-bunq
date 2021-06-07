@@ -7,7 +7,7 @@ export const fetchUser = (id) => http.get(`/user/${id}`);
 export const fetchLatestMessages = (conversationId, lastMessageId) => 
     http.get(`/conversation/${conversationId}/new/${lastMessageId}`);
 
-export const fetchLimitedMessages = (conversationId, limit, offset) => 
+export const fetchLimitedMessages = (conversationId, limit = 6, offset = 0) => 
     http.get(`/conversation/${conversationId}/message/limited?limit=${limit}&&offset=${offset}`);
 
 export const fetchUserLastSeen = (conversationId, userId) => 
@@ -24,5 +24,5 @@ export const createPersonalConversation = ({users}) => http.post(`/conversation/
 
 export const createGroupConversation = ({users, name}) => http.post(`/conversation/group`, {users, name});
 
-export const setSeenByUser = (conversationId, userId) => http.put(`/conversation/${conversationId}/seen/${userId}`);
+export const postSeenByUser = (conversationId, userId) => http.put(`/conversation/${conversationId}/seen/${userId}`);
 
