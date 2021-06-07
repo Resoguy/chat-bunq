@@ -1,0 +1,13 @@
+@import '../../assets/styles/variables';
+
+.card {
+    border: 1px solid transparent;
+    border-radius: $radius;
+    padding: $space-md;
+    box-shadow: $shadow;
+    background-color: $white;
+}
+
+.border {
+    border-color: $secondary;
+}

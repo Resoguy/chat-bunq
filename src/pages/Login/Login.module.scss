@@ -1,0 +1,11 @@
+@import '../../assets/styles/variables';
+
+.loginWrapper {
+    height: 100%;
+    padding-top: $space-xl;
+
+    .loginCard {
+        width: 440px;
+        margin: auto;
+    }
+}

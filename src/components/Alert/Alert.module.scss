@@ -1,0 +1,23 @@
+@import '../../assets/styles/variables';
+
+.alert {
+    border-radius: $radius;
+    border: 2px solid transparent;
+    margin: $space-sm 0;
+
+    &.info {
+        background-color: $tertiary;
+        color: darken($tertiary, 50%);
+        border-color: darken($tertiary, 50%);
+
+        .header {
+            background-color: darken($tertiary, 50%);
+            color: $white;
+            padding: $space-sm;
+        }
+
+        .content {
+            padding: $space-sm;
+        }
+    }
+}

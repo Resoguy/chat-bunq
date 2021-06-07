@@ -1,0 +1,42 @@
+@import '../../assets/styles/variables';
+
+.button {
+    border: 1px solid transparent;
+    border-radius: $radius;
+    padding: $space-sm $space-md;
+    transition: $transition;
+    font-size: $font-md;
+    cursor: pointer;
+
+    &.primary {
+        background-color: $primary;
+        color: $white;
+
+        &:hover {
+            background-color: darken($primary, 5%);
+        }
+    }
+
+    &.secondary {
+        background-color: $secondary;
+        color: $white;
+
+        &:hover {
+            background-color: darken($secondary, 5%);
+        }
+    }
+
+    &.accent {
+        background-color: $accent;
+        color: $secondary;
+
+        &:hover {
+            background-color: darken($accent, 5%);
+        }
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+}

@@ -1,0 +1,60 @@
+@import './assets/styles/variables';
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body {
+  color: $secondary;
+  font-size: $font-md;
+}
+
+p {
+  margin: $space-xs 0;
+}
+
+h1 {
+  font-size: $font-xl;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: $font-lg;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: font-lg;
+  font-weight: normal;
+}
+
+h4 {
+  font-size: $font-md;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: $font-md;
+  font-weight: normal;
+}
+
+h6 {
+  font-size: $font-sm;
+  font-weight: bold;
+}
+
+ul {
+  margin-left: $space-lg;
+}

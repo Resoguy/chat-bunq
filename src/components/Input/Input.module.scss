@@ -1,0 +1,38 @@
+@import '../../assets/styles/variables';
+
+.formGroup {
+    margin: $space-sm 0;
+
+    label {
+        display: block;
+        margin-bottom: $space-xs;
+        font-size: $font-md;
+        font-weight: 500;
+    }
+
+    textarea, input {
+        display: block;
+        border-radius: $radius;
+        border: 1px solid $secondary;
+        font-size: $font-md;
+        padding: $space-sm;
+        outline: none;
+
+        &:focus {
+            border-color: $primary;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            background-color: $bg;
+        }
+    }
+
+    .block {
+        width: 100%;
+    }
+
+    .errorMsg {
+        color: $error;
+    }
+}

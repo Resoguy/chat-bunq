@@ -1,0 +1,33 @@
+@import '../../assets/styles/variables';
+
+.toolbar {
+    background-color: $primary;
+    display: flex;
+    justify-content: space-between;
+    color: $white;
+
+    .brandLogo {
+        display: flex;
+        text-decoration: none;
+        color: $white;
+        font-weight: bold;
+        font-size: $font-lg;
+        padding: $space-md;
+        transition: $transition;
+
+        &:hover {
+            background-color: darken($primary, 5%);
+        }
+    }
+
+    .toolbarList {
+        display: flex;
+
+        .toolbarItem {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 $space-sm;
+        }
+    }
+}
