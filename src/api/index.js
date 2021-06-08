@@ -17,7 +17,7 @@ export const fetchConversationDetails = (conversationId) => http.get(`/conversat
 
 export const fetchUserConversations = (userId) => http.get(`/conversation/user/${userId}`);
 
-export const sendMessage = (conversationId, {senderId, message}) => 
+export const sendMessageToConversation = (conversationId, {senderId, message}) => 
     http.post(`/conversation/${conversationId}/message/send`, {senderId, message});
 
 export const createPersonalConversation = ({users}) => http.post(`/conversation/personal`, {users});

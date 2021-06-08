@@ -1,0 +1,22 @@
+@import '../../assets/styles/variables';
+
+
+.overlay {
+    background-color: rgba($secondary, 0.4);
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeBtn {
+    position: absolute;
+    top: $space-md;
+    left: $space-md;
+}
+
+.modalContent {
+    min-width: 440px;
+}

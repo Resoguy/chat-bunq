@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {setActiveConversationId} from '../../store/actions';
 import {getConversations, getConversationMessages} from '../../store/thunks';
-import {ConversationItem, Loading, MessagePanel} from '../../components';
+import {
+    ConversationForm,
+    ConversationItem, 
+    Loading, 
+    MessagePanel, 
+    Modal, 
+    Button
+} from '../../components';
 import s from './Home.module.scss';
 
 
@@ -13,7 +21,7 @@ const WelcomeMessage = ({username}) => (
 
 class Home extends Component {
     state = {
-        activeConversation: null
+        isModalOpen: false
     }
 
     componentDidMount() {
@@ -21,27 +29,42 @@ class Home extends Component {
     }
 
     activateConversation = (conversationId) => {
-        this.setState({activeConversation: conversationId});
+        this.props.setActiveConversationId(conversationId);
         this.props.getConversationMessages(conversationId);
     }
 
+    toggleConversationModal = (status) => {
+        this.setState({isModalOpen: status || !this.state.isModalOpen});
+    }
+
     render() {
-        const {user, conversations, messages, isMessagesLoading} = this.props;
-        const {activeConversation} = this.state;
+        const {user, conversations, messages, isMessagesLoading, activeConversationId} = this.props;
 
         return (
             <section className={s.homeWrapper}>
+                <Modal 
+                    isOpen={this.state.isModalOpen}
+                    onClose={() => this.toggleConversationModal(false)}>
+                    <ConversationForm onSubmit={() => this.toggleConversationModal(false)} />
+                </Modal>
+                
                 <aside className={s.sideMenu}>
+                    <div className={s.newConversationWrapper}>
+                        <Button onClick={() => this.toggleConversationModal(true)}>
+                            New Conversation
+                        </Button>
+                    </div>
                     {
-                        conversations &&
-                        conversations.map((c, index) => (
+                        conversations ?
+                        conversations.map(c => (
                             <ConversationItem 
-                                key={c.conversation.id + index} // There are duplicate conversation ids 
+                                key={c.conversation.id + c.name} // There are duplicate conversation ids 
                                 conversation={c.conversation} 
-                                active={activeConversation === c.conversation.id}
+                                active={activeConversationId === c.conversation.id}
                                 users={c.users}
                                 onClick={this.activateConversation} />
-                        ))
+                        )) :
+                        <Loading />
                     }
                 </aside>
 
@@ -69,7 +92,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     getConversations,
-    getConversationMessages
+    getConversationMessages,
+    setActiveConversationId
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

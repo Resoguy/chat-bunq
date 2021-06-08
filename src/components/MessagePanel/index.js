@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Formik, Form, Field} from 'formik';
+import React, {Component, createRef} from 'react';
 import cc from 'classcat';
+import {Formik, Form, Field} from 'formik';
+import {connect} from 'react-redux';
+import {sendMessage, getLatestMessages, getConversationMessages} from '../../store/thunks';
 import { Card, Input, Button } from '..';
 import s from './MessagePanel.module.scss';
 
@@ -26,16 +27,22 @@ const MessageForm = ({onSubmit}) => {
                     message: ''
                 }}
                 onSubmit={onSubmit}>
-                <Form>
-                    <Field
-                        as={Input}
-                        name="message"
-                        placeholder="Enter your message..."
-                        type="textarea"
-                        block />
-
-                    <Button type="submit">Send</Button>
-                </Form>
+                {
+                    ({isSubmitting}) => (
+                        <Form>
+                            <Field
+                                as={Input}
+                                name="message"
+                                placeholder="Enter your message..."
+                                type="textarea"
+                                block />
+        
+                            <Button type="submit" loading={isSubmitting}>
+                                Send
+                            </Button>
+                        </Form>
+                    )
+                }
             </Formik>
         </div>
     )
@@ -43,25 +50,40 @@ const MessageForm = ({onSubmit}) => {
 
 class MessagePanel extends Component {
     polling;
+    messagesEndRef = createRef();
 
     componentDidMount() {
         this.pollNewMessages();
+        this.scrollToBottom();
     }
 
     componentWillUnmount() {
-        console.log('CLEAR POLLING');
+        this.clearPollMessages();
+    }
+
+    scrollToBottom = () => {
+        this.messagesEndRef.current.scrollIntoView({behaviour: 'smooth'});
+    }
+
+    pollNewMessages = async () => {
+        if (this.polling) this.clearPollMessages();
+
+        await this.props.getLatestMessages();
+
+        this.polling = setTimeout(this.pollNewMessages, 10000)
+    }
+
+    clearPollMessages = () => {
         clearTimeout(this.polling);
     }
 
-    pollNewMessages = () => {
-        console.log('POLLING');
+    sendMessage = async ({message}, {resetForm, setSubmitting}) => {
+        await this.props.sendMessage(message);
+        await this.pollNewMessages();
 
-        this.polling = setTimeout(this.pollNewMessages, 5000)
-    }
-
-    sendMessage = (values, {resetForm}) => {
-        console.log(values);
         resetForm();
+        setSubmitting(false);
+        this.scrollToBottom();
     }
 
     render() {
@@ -69,15 +91,18 @@ class MessagePanel extends Component {
 
         return (
             <div className={s.messagePanel}>
-                {
-                    messages.map(message => (
-                        <MessageCard 
-                            key={message.id} 
-                            message={message}
-                            isOwner={message.senderId === user.id}
-                            sender={users.find(u => u.id === message.senderId)} />
-                    ))
-                }
+                <div className={s.messagesWrapper}>
+                    {
+                        messages.map(message => (
+                            <MessageCard 
+                                key={message.id} 
+                                message={message}
+                                isOwner={message.senderId === user.id}
+                                sender={users.find(u => u.id === message.senderId)} />
+                        ))
+                    }
+                    <div className={s.scrollerDiv} ref={this.messagesEndRef}></div>
+                </div>
 
                 <MessageForm onSubmit={this.sendMessage} />
             </div>
@@ -88,11 +113,14 @@ class MessagePanel extends Component {
 const mapStateToProps = state => ({
     user: state.auth.user,
     users: state.auth.users,
-    messages: state.chat.messages
+    messages: state.chat.messages,
+    activeConversationId: state.chat.activeConversationId
 });
 
 const mapDispatchToProps = {
-
+    sendMessage,
+    getConversationMessages,
+    getLatestMessages
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagePanel);

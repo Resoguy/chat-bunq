@@ -4,7 +4,12 @@ import s from './Loading.module.scss';
 
 const Loading = () => (
     <div className={s.loadingWrapper}>
-        <h1>...Loading</h1>
+        <div className={s.ring}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 )
 

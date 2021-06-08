@@ -1,0 +1,28 @@
+@import '../../assets/styles/variables';
+
+
+.usersWrapper {
+    margin: $space-md 0;
+    background-color: $bg;
+}
+.userCheckbox {
+    .checkboxLabel {
+        padding: $space-md;
+        transition: $transition;
+        display: block;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: darken($bg, 5%);
+        }
+
+        &.checked {
+            background-color: $primary;
+            color: $white;
+        }
+    }
+
+    input {
+        display: none;
+    }
+}

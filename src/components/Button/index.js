@@ -5,6 +5,7 @@ import s from './Button.module.scss';
 
 const Button = ({
     children, 
+    className = '',
     type, 
     onClick, 
     loading = false,
@@ -12,7 +13,7 @@ const Button = ({
     color = 'primary' // primary | secondary | accent
 }) => (
     <button 
-        className={cc([s.button, s[color]])}
+        className={cc([s.button, s[color], className])}
         type={type} 
         disabled={disabled || loading}
         onClick={onClick}>

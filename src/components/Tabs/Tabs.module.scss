@@ -1,0 +1,32 @@
+@import '../../assets/styles/variables';
+
+
+.tabHeader {
+    display: flex;
+    justify-content: center;
+}
+.tabBtns {
+    display: flex;
+    border-radius: $radius;
+    overflow: hidden;
+}
+.tabBtn {
+    border: none;
+    padding: $space-md;
+    background-color: $tertiary;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+        background-color: darken($tertiary, 5%);
+    }
+
+    input {
+        display: none;
+    }
+
+    &.active {
+        background-color: $primary;
+        color: $white;
+    }
+}

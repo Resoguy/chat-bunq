@@ -22,3 +22,10 @@
     align-items: center;
     height: 100%;
 }
+
+.newConversationWrapper {
+    padding: $space-md $space-lg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
