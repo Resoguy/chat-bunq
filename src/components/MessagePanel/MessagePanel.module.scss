@@ -41,9 +41,8 @@
 .messageFormWrapper {
     background-color: $tertiary;
     padding: $space-md;
-    // position: fixed;
-    // bottom: 0;
-    // left: 300px;
-    // right: 0;
-    // z-index: 9;
+}
+
+.premiumWarning {
+    text-align: center;
 }

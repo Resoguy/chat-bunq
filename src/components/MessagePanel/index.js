@@ -93,6 +93,10 @@ class MessagePanel extends Component {
             <div className={s.messagePanel}>
                 <div className={s.messagesWrapper}>
                     {
+                        messages.length >= 10 &&
+                        <p className={s.premiumWarning}>You must have a <strong>Premium Account</strong> to see previous messages.</p>
+                    }
+                    {
                         messages.map(message => (
                             <MessageCard 
                                 key={message.id} 
